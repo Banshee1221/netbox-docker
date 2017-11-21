@@ -1,0 +1,11 @@
+ADMIN_USER=admin
+ADMIN_EMAIL=admin@local.net
+ADMIN_PASS=123qwe
+
+ALLOWED_HOSTS='localhost', '127.0.0.1'
+
+DB_USER=netbox
+DB_NAME=netbox
+DB_PASS=super_secret_password
+DB_HOST=127.0.0.1
+DB_PORT=5432
