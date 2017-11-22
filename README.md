@@ -17,6 +17,19 @@ Then, either:
 - Docker Hub:
   - `docker run -d -p <port to listen on host>:8000 --env-file=env eugenedb/netbox`
 
-## TODO
+## Example env file
 
-Add Nginx instead of using built-in webserver
+```bash
+ADMIN_USER=admin
+ADMIN_EMAIL=admin@local.net
+ADMIN_PASS=123qwe
+
+ALLOWED_HOSTS='localhost', '127.0.0.1'
+NGINX_HOST=same_as_FQDN_for_allowed_hosts
+
+DB_USER=netbox
+DB_NAME=netbox
+DB_PASS=super_secret_password
+DB_HOST=127.0.0.1
+DB_PORT=5432
+```
