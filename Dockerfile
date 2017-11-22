@@ -31,18 +31,26 @@ RUN apt update && apt install -y \
 	zlib1g-dev \
 	python3-pip \
 	wget \
-	nginx
+	nginx \
+	supervisor
 
-RUN pip3 install --upgrade pip
+RUN pip3 install --upgrade pip && \
+	pip3 install gunicorn
 
 RUN wget $url -P /opt && \
-	tar -xzf /opt/v$ver.tar.gz -C /opt && \
-	ln -s /opt/netbox-$ver/ /opt/netbox && \
-	cd /opt/netbox && pip3 install -r requirements.txt && \
+	tar -xzf /opt/v$ver.tar.gz -C /opt && rm /opt/v$ver.tar.gz && \
+	mv /opt/netbox-$ver/ /opt/netbox && \
+	cd /opt/netbox && \
+	pip3 install -r requirements.txt && \
 	cp netbox/netbox/configuration.example.py netbox/netbox/configuration.py
 
+COPY config/gunicorn_config.py /opt/netbox/gunicorn_config.py
+COPY config/supervisor_netbox.conf /etc/supervisor/conf.d/netbox.conf
 COPY startup.sh /opt/netbox/netbox/startup.sh
+COPY config/nginx_netbox.conf /etc/nginx/sites-available/netbox.conf
 
-EXPOSE 8000
+RUN cd /etc/nginx/sites-enabled/ && rm default && ln -s /etc/nginx/sites-available/netbox.conf
+
+EXPOSE 80
 
 ENTRYPOINT ["/bin/bash", "/opt/netbox/netbox/startup.sh"]

@@ -3,6 +3,7 @@ ADMIN_EMAIL=admin@local.net
 ADMIN_PASS=123qwe
 
 ALLOWED_HOSTS='localhost', '127.0.0.1'
+NGINX_HOST=same_as_FQDN_for_allowed_hosts
 
 DB_USER=netbox
 DB_NAME=netbox

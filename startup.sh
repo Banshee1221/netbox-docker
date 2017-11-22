@@ -63,4 +63,10 @@ echo "[+] Adding user: $ADMIN_USER"
 
 echo "from django.contrib.auth.models import User; User.objects.filter(email='$ADMIN_EMAIL').delete(); User.objects.create_superuser('$ADMIN_USER', '$ADMIN_EMAIL', '$ADMIN_PASS')" | python3 manage.py shell
 
-python3 manage.py runserver 0.0.0.0:8000 --insecure
+sed -i "s/server_name netbox.example.com;/server_name $NGINX_HOST;/g" /etc/nginx/sites-enabled/netbox.conf
+cat /etc/nginx/sites-enabled/netbox.conf
+service nginx stop
+killall supervisor
+service supervisor stop
+service supervisor start
+nginx -g 'daemon off;'
