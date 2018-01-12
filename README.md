@@ -1,4 +1,4 @@
-[![GitHub release](https://img.shields.io/github/release/digitalocean/netbox.svg)](https://github.com/digitalocean/netbox) [![Docker Build Status](https://img.shields.io/docker/build/eugenedb/netbox-docker.svg)](https://hub.docker.com/r/eugenedb/netbox-docker/)
+[![Docker Build Status](https://img.shields.io/docker/build/eugenedb/netbox-docker.svg)](https://hub.docker.com/r/eugenedb/netbox-docker/)
 # Netbox Docker
 
 Netbox is an [IPAM and DCIM management tool](https://github.com/digitalocean/netbox) by Digital Ocean. This is a containerized version of said tool.
